@@ -22,7 +22,10 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
     ];
-
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'owner_id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
