@@ -8,12 +8,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 class ProjectController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('jwt.auth', ['except' => ['index', 'show']]);
-    }
-
     public function index()
     {
         $projects = Project::all();
@@ -88,20 +82,5 @@ class ProjectController extends Controller
     //      $projects = Project::all();
     //      return response()->json($projects);
     //  }
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
 
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return response()->json(compact('token'));
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return response()->json(['message' => 'Successfully logged out']);
-    }
 }

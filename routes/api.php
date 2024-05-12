@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MessageController;
@@ -14,8 +14,10 @@ use App\Http\Controllers\MessageController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post("register",[ApiController::class , "register"]);
+Route::post("login",[ApiController::class , "login"]);
 
-Route::group(['middleware' => 'jwt.auth'], function () {
+Route::group(['middleware' => 'auth:ap'], function () {
     // عرض جميع المشاريع
     Route::get('projects', [ProjectController::class, 'index']);
 
@@ -33,7 +35,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 
     // عرض جميع الرسائل
     Route::get('messages', [MessageController::class, 'index']);
-    
+
     // عرض رسالة محددة
     Route::get('messages/{id}', [MessageController::class, 'show']);
 
