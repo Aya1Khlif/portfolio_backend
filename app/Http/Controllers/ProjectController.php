@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\project;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Support\Facades\Auth;
+
 class ProjectController extends Controller
 {
     public function index()

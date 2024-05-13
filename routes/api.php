@@ -15,7 +15,7 @@ use App\Http\Controllers\MessageController;
 |
 */
 Route::post("register",[ApiController::class , "register"]);
-Route::post("login",[ApiController::class , "login"]);
+Route::get("login",[ApiController::class , "login"]);
 
 Route::group(['middleware' => 'auth:ap'], function () {
     // عرض جميع المشاريع
