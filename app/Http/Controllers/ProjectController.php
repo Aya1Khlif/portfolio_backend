@@ -13,10 +13,10 @@ class ProjectController extends Controller
         return response()->json($projects);
     }
 
-    public function create()
-    {
-        return response()->json(['message' => 'Provide data to create a new project'], 200);
-    }
+    // public function create()
+    // {
+    //     return response()->json(['message' => 'Provide data to create a new project'], 200);
+    // }
 
     public function store(Request $request)
     {

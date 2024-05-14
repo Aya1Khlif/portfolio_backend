@@ -4,6 +4,8 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MessageController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,11 +15,14 @@ use App\Http\Controllers\MessageController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "api" middleware group. Make something great!
 |
-*/
-Route::post("register",[ApiController::class , "register"]);
-Route::get("login",[ApiController::class , "login"]);
+*/Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-Route::group(['middleware' => 'auth:ap'], function () {
+Route::post("register",[ApiController::class , "register"]);
+Route::post("login",[ApiController::class , "login"]);
+
+Route::group(['middleware' => 'auth:api'], function () {
     // عرض جميع المشاريع
     Route::get('projects', [ProjectController::class, 'index']);
 

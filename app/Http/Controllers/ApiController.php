@@ -11,6 +11,10 @@ class ApiController extends Controller
 {
       //Register Api(post ,formatdata)
     //DATA VALIDATION
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    }
     public function register(Request $request)
     {
         $request->validate(
